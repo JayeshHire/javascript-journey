@@ -20,24 +20,24 @@ document.body.appendChild(para);
 document.body.appendChild(para2);
 para.textContent = "";
 
-const randnum = Math.floor(Math.random()*100 - 1);
-console.log(randnum);
+let randnum = Math.floor(Math.random()*100 - 1);
+
 
 const button = document.querySelector("button");
-button.addEventListener("click", test)
+button.addEventListener("click", main)
 
 const resetbtn = document.getElementById("reset-btn")
 resetbtn.addEventListener("click", reset);
 
-function checkGuess() {
-    alert("I am a placeholder");
-  }
-  
+let d = 15;
 
 //trial function 
-function test(){
+function main(){
     turns -= 1;
+    
+
     if (turns >0 ){
+         
         if (turns < 9){
             const t = document.getElementById("message");
             document.body.removeChild(t);
@@ -69,9 +69,13 @@ function test(){
         resetbtn.removeAttribute("hidden");
         const attr = document.createAttribute("disabled");
         inputField.setAttributeNode(attr);
-
+        
     } else {
 
+    }
+
+    if( turns == 5){
+        console.log(randnum);
     }
 }
 
@@ -93,6 +97,7 @@ function reset(){
     para2.style.backgroundColor = "white";
     para2.style.color = "black";
     para2.textContent = "";
+    randnum = Math.floor(Math.random()*100 - 1)
 }
 
 //created function for the actual purpose but it is not working now
