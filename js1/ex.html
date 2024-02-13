@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="ex.css">
+    
+</head>
+<body>
+    
+    <button> Player 1</button>
+    <script >
+function add_para() {
+    const para = document.createElement("p");
+    para.textContent = "You have clicked a button !";
+    document.body.appendChild(para);
+    const ele = document.createElement("div");
+    ele.textContent = "This is bob the builder ...";
+    ele.style.alignContent = "center";
+    ele.style.backgroundColor = "yellow";
+    ele.style.borderRadius = "30%";
+    ele.style.width = "4rem";
+    document.body.appendChild(ele);
+}
+
+const buttons = document.querySelectorAll("button");
+
+for (const button of buttons) {
+    button.addEventListener("click", add_para);
+}
+    </script>
+</body>
+</html>

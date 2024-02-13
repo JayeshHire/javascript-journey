@@ -1,0 +1,12 @@
+
+button{
+    font-size: x-large;
+    font-family: 'Courier New', Courier, monospace;
+    text-transform: capitalize;
+    text-align: center;
+    padding: 3px;
+    border-radius: 2px;
+    border-color: blueviolet;
+    box-sizing: border-box;
+    
+}
