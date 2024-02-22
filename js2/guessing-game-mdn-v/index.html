@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+
+    <title>Number guessing game</title>
+
+    <style>
+      html {
+        font-family: sans-serif;
+      }
+
+      body {
+        width: 50%;
+        max-width: 800px;
+        min-width: 480px;
+        margin: 0 auto;
+      }
+      
+      .form input[type="number"] {
+        width: 200px;
+      }
+
+      .lastResult {
+        color: white;
+        padding: 3px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1>Number guessing game</h1>
+
+    <p>We have selected a random number between 1 and 100. See if you can guess it in 10 turns or fewer. We'll tell you if your guess was too high or too low.</p>
+
+    <div class="form">
+      <label for="guessField">Enter a guess: </label>
+      <input type="number" min="1" max="100" required id="guessField" class="guessField">
+      <input type="submit" value="Submit guess" class="guessSubmit">
+    </div>
+
+    <div class="resultParas">
+      <p class="guesses"></p>
+      <p class="lastResult"></p>
+      <p class="lowOrHi"></p>
+    </div>
+
+    <script>
+
+let randomNumber = Math.floor(Math.random() * 100) + 1;
+ 
+const guesses = document.querySelector(".guesses");
+const lastResult = document.querySelector(".lastResult");
+const lowOrHi = document.querySelector(".lowOrHi");
+
+const guessSubmit = document.querySelector(".guessSubmit");
+const guessField = document.querySelector(".guessField");
+
+
+const resetButton = document.createElement("button");
+const attr1 = document.createAttribute("class");
+const attr2 = document.createAttribute("hidden");
+attr1.value = "reset-btn" ;
+resetButton.setAttributeNode(attr2);
+resetButton.setAttributeNode(attr1);
+resetButton.textContent = "Reset Game"
+document.body.appendChild(resetButton);
+let guessCount = 1;
+
+guessField.focus();
+
+resetButton.addEventListener("click", reset);
+guessSubmit.addEventListener("click", checkGuess);
+
+function checkGuess() {
+  alert("I am a placeholder");
+}
+
+function checkGuess(){
+  const userGuess = Number(guessField.value);
+  if (guessCount === 1){
+    guesses.textContent = "Your guesses are ";
+  }
+  guessCount += 1;
+  guesses.textContent = `${guesses.textContent} ${userGuess}`;
+
+  if (userGuess > randomNumber ){
+    lowOrHi.textContent = "Your guess is greater than the actual number";
+    lowOrHi.style.backgroundColor = "Red";
+    lowOrHi.style.opacity = "0.6";
+    lowOrHi.style.color = "black";
+
+  } else if (userGuess < randomNumber){
+    lowOrHi.textContent = "Your guess is smaller than the actual number";
+    lowOrHi.style.backgroundColor = "orange";
+    lowOrHi.style.color = "black";
+    lowOrHi.style.opacity = "0.6";
+  } else {
+    lowOrHi.textContent = "Your answer is correct";
+    lowOrHi.style.backgroundColor = "green";
+    lowOrHi.style.opacity = "0.6";
+    lowOrHi.style.color = "black";
+    startAgain();
+  }
+
+  if (guessCount === 10){
+    gameOver();
+  }
+}
+
+  function gameOver(){
+    const attr  = document.createAttribute("disabled");
+    guessField.setAttributeNode(attr);
+    guessSubmit.disabled = true;
+    lowOrHi.textContent = "";
+    guesses.textContent = "";
+    startAgain();
+  }
+
+  function startAgain(){
+    resetButton.removeAttribute("hidden");
+  }
+
+  function reset(){
+    guessCount = 1;
+    guessField.removeAttribute("disabled");
+    guesses.textContent = "";
+    lowOrHi.textContent ="";
+    const attr = document.createAttribute("hidden");
+    resetButton.setAttributeNode(attr);
+    guessField.disabled = false;
+    guessSubmit.disabled = false;
+    guessField.value = "";
+    guessField.focus();
+  }
+
+    </script>
+  </body>
+</html>
